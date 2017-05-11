@@ -1,8 +1,5 @@
 ﻿using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace DLCBot.Ultilities
 {
@@ -17,13 +14,22 @@ namespace DLCBot.Ultilities
             client.BaseUrl = new Uri(baseUrl);
         }
 
-        //Posts new conversations.
-        internal static void TurnLightsOn()
+        internal static void GetTurnLightsOff()
         {
-            var request = new RestRequest("LightsOn", Method.POST);
+            var request = new RestRequest("lightStatus", Method.GET);
             var response = client.Execute(request);
         }
 
+        internal static void PostTurnLightsOn()
+        {
+            var request = new RestRequest("lightsOn", Method.POST);
+            var response = client.Execute(request);
+        }
 
+        internal static void PostTurnLightsOff()
+        {
+            var request = new RestRequest("lightsOff", Method.POST);
+            var response = client.Execute(request);
+        }
     }
 }
