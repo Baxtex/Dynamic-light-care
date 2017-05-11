@@ -45,5 +45,12 @@ namespace DLCBot.Dialogs
             }
             context.Wait(MessageReceived);
         }
+
+        [LuisIntent("ChangeCycle")]
+        public async Task ChangeCycle(IDialogContext context, LuisResult result)
+        {
+            //Change the cycle
+            context.Wait(MessageReceived);
+        }
     }
 }
