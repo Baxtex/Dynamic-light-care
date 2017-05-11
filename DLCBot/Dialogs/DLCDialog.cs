@@ -14,10 +14,39 @@ namespace DLCBot.Dialogs
     [Serializable]
     public class DLCDialog : LuisDialog<object>
     {
-        [LuisIntent("LightSwitch")]
-        public async Task ShowDevice(IDialogContext context, LuisResult result)
+        private Boolean deviceOn = false;
+
+        [LuisIntent("TurnDeviceOn")]
+        public async Task TurnDeviceOn(IDialogContext context, LuisResult result)
         {
+            if (deviceOn)
+            {
+                await context.PostAsync("The device is already on!");
+            }
+            else
+            {
+                await context.PostAsync("The device has been turned on!");
+                deviceOn = true;
+            }
+            context.Wait(MessageReceived);
              
+        }
+
+        [LuisIntent("TurnDeviceOff")]
+        public async Task TurnDeviceOff(IDialogContext context, LuisResult result)
+        {
+            if (!deviceOn)
+            {
+                await context.PostAsync("The device is already off!");
+            }
+            else
+            {
+                await context.PostAsync("The device has been turned off!");
+                deviceOn = false;
+            }
+            context.Wait(MessageReceived);
+
+
         }
 
     }

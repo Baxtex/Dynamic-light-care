@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
+using DLCBot.Dialogs;
 
 namespace DLCBot
 {
@@ -21,13 +23,7 @@ namespace DLCBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
-
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-                await connector.Conversations.ReplyToActivityAsync(reply);
+                await Conversation.SendAsync(activity, () => new DLCDialog());
             }
             else
             {
@@ -41,7 +37,7 @@ namespace DLCBot
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
-                // Implement user deletion here
+                // Implement user deletion her
                 // If we handle user deletion, return a real message
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
