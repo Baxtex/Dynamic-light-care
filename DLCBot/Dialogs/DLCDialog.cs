@@ -28,8 +28,7 @@ namespace DLCBot.Dialogs
                 await context.PostAsync("The device has been turned on!");
                 deviceOn = true;
             }
-            context.Wait(MessageReceived);
-             
+            context.Wait(MessageReceived); 
         }
 
         [LuisIntent("TurnDeviceOff")]
@@ -45,9 +44,6 @@ namespace DLCBot.Dialogs
                 deviceOn = false;
             }
             context.Wait(MessageReceived);
-
-
         }
-
     }
 }
