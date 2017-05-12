@@ -2,10 +2,7 @@
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace DLCBot.Dialogs
 {
@@ -25,6 +22,7 @@ namespace DLCBot.Dialogs
             }
             else
             {
+                Ultilities.ApiHandler.PostTurnLights("true");
                 await context.PostAsync("The device has been turned on!");
                 deviceOn = true;
             }
@@ -40,6 +38,7 @@ namespace DLCBot.Dialogs
             }
             else
             {
+                Ultilities.ApiHandler.PostTurnLights("false");
                 await context.PostAsync("The device has been turned off!");
                 deviceOn = false;
             }

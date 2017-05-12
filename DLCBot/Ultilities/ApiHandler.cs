@@ -14,21 +14,19 @@ namespace DLCBot.Ultilities
             client.BaseUrl = new Uri(baseUrl);
         }
 
-        internal static void GetTurnLightsOff()
-        {
-            var request = new RestRequest("lightStatus", Method.GET);
-            var response = client.Execute(request);
-        }
-
-        internal static void PostTurnLightsOn()
+        //Turn light on or off.
+        internal static void PostTurnLights(string action)
         {
             var request = new RestRequest("lightsOn", Method.POST);
+            request.AddQueryParameter("action", action);
             var response = client.Execute(request);
         }
 
-        internal static void PostTurnLightsOff()
+        //Change the ligt. 
+        internal static void PostChangeLight(string action)
         {
-            var request = new RestRequest("lightsOff", Method.POST);
+            var request = new RestRequest("lightsOn", Method.POST);
+            request.AddQueryParameter("action", action);
             var response = client.Execute(request);
         }
     }
