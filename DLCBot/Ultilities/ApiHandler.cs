@@ -17,7 +17,7 @@ namespace DLCBot.Ultilities
         //Turn light on or off.
         internal static void PostTurnLights(string action)
         {
-            var request = new RestRequest("lightsOn", Method.POST);
+            var request = new RestRequest("http://localhost:8081/Turndeviceon", Method.POST);
             request.AddQueryParameter("action", action);
             var response = client.Execute(request);
         }
@@ -25,7 +25,7 @@ namespace DLCBot.Ultilities
         //Change the ligt. 
         internal static void PostChangeLight(string action)
         {
-            var request = new RestRequest("lightsOn", Method.POST);
+            var request = new RestRequest("http://localhost:8081/Turndeviceoff", Method.POST);
             request.AddQueryParameter("action", action);
             var response = client.Execute(request);
         }
